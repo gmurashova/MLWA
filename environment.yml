@@ -1,0 +1,9 @@
+name: envs
+channels:
+  - defaults
+dependencies:
+  - pip
+  - tensorflow
+  - matplotlib
+  - pandas
+  - scikit-learn
