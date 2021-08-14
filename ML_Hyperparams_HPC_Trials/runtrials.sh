@@ -1,4 +1,8 @@
 #!/bin/bash
+
+mkdir Figures
+mkdir Models
+
 ./GM_ML_Histo_new_from_tutorial_op.py adadelta 0.0001
 ./GM_ML_Histo_new_from_tutorial_op.py adadelta 0.001
 ./GM_ML_Histo_new_from_tutorial_op.py adadelta 0.002

@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 
-
 #Copied from GM_ML_Histo_new_from_tutorial_op-nadam_lr-0.01_batch16_1000_epochs.py
 
 from __future__ import absolute_import, division, print_function
@@ -45,8 +44,7 @@ import sys
 print('Number of arguments:', len(sys.argv), 'arguments.')
 print('Argument List:', str(sys.argv))
 
-
-optimizer='Adadelta' 
+optimizer='adadelta' 
 lr=0.01
 
 print(f"First arguemtn is optimzer: nadam adam adamax adagrad adadelta")
@@ -62,7 +60,7 @@ print(f"{optimizer=}")
 ### End input argument code ###
 
 
-data = pd.read_csv("./colorectal-histology-mnist/hmnist_64_64_L.csv")
+data = pd.read_csv("../colorectal-histology-mnist/hmnist_64_64_L.csv")
 
 #### Preprocessing to train ####
 Y = data["label"]

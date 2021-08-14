@@ -1,5 +1,12 @@
 # MLWA
 
+## Downloading Kaggle Dataset
+
+1. Create a directory called colorectal-histology-mnist using the following command: ```mkdir colorectal-histology-mnist```
+2. Generate a kaggle login and then go to the [colorectal histology mnist](https://www.kaggle.com/kmader/colorectal-histology-mnist) to download the required datase. Save the ```archive.zip``` file in the above directory.
+3. Extract the file using the ofllowing command: ```unzip archive.zip```
+
+## Review trials
 
 1. ML Hyperparam Trials <-- this is the folder with the scripts to run the hyperparameter trials, where I test the various learning rates and optimizer functions on the Kaggle dataset.
 2. ML_Kaggle_TL <-- this contains the transfer learning "Kaggle" model scripts and data (colorectal-histology-mnist is the folder with the MNIST data from Kaggle)
