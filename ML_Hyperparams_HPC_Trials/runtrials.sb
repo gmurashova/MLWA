@@ -1,29 +1,18 @@
 #!/bin/bash
 #SBATCH --time=24:00:00
 #SBATCH --mem=4gb
+#SBATCH --array=1-22
 
-mkdir Figures
-mkdir Models
 
-./GM_ML_Histo_new_from_tutorial_op.py adadelta 0.0001
-./GM_ML_Histo_new_from_tutorial_op.py adadelta 0.001
-./GM_ML_Histo_new_from_tutorial_op.py adadelta 0.002
-./GM_ML_Histo_new_from_tutorial_op.py adadelta 0.01
-./GM_ML_Histo_new_from_tutorial_op.py adagradi 0.0001
-./GM_ML_Histo_new_from_tutorial_op.py adagrad 0.001
-./GM_ML_Histo_new_from_tutorial_op.py adagrad 0.002
-./GM_ML_Histo_new_from_tutorial_op.py adagrad 0.01
-./GM_ML_Histo_new_from_tutorial_op.py adamax 0.0001
-./GM_ML_Histo_new_from_tutorial_op.py adamax 0.001
-./GM_ML_Histo_new_from_tutorial_op.py adamax 0.002
-./GM_ML_Histo_new_from_tutorial_op.py adamax 0.01
-./GM_ML_Histo_new_from_tutorial_op.py adam 0.0001
-./GM_ML_Histo_new_from_tutorial_op.py adam 0.001
-./GM_ML_Histo_new_from_tutorial_op.py adam 0.002
-./GM_ML_Histo_new_from_tutorial_op.py adam 0.01
-./GM_ML_Histo_new_from_tutorial_op.py nadam 0.0001
-./GM_ML_Histo_new_from_tutorial_op.py nadam 0.001
-./GM_ML_Histo_new_from_tutorial_op.py nadam 0.002
-./GM_ML_Histo_new_from_tutorial_op.py nadam 0.01
+mkdir -p Figures
+mkdir -p Models
 
+module load anaconda
+conda activate ../envs
+
+trial=`cat runtrials.txt | head -n ${SLURM_ARRAY_TASK_ID} | tail -n 1`
+
+echo ${trial}
+
+${trial}
 
