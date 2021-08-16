@@ -28,6 +28,8 @@ There are three scripts in each "Data_Generator_*" folder. The scripts must be r
 
 3. create_label_vector.py <-- this file creates an array of labels for the tiles that are one-hot encoded so the ML program can import, use, and interpret them.
 
+**** To obtain the NMMMI data referenced above, please contact Gabrielle Murashova, Ph.D. at murasho1@msu.edu ****
+
 ## Review trials
 
 1. ML Hyperparam Trials <-- this is the folder with the scripts to run the hyperparameter trials, where I test the various learning rates and optimizer functions on the Kaggle dataset.
