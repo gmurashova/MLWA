@@ -50,9 +50,9 @@ import glob
 import re
 print(tf.__version__)
 
-path1  = '/Users/gabrielleosborn-lipsitz/MOVE_BACK_TO_DESKTOP/ML_Research/MMI_256x256_AR_Corrected/TILES_256_AR_Corrected/CANCER'
-path2  = '/Users/gabrielleosborn-lipsitz/MOVE_BACK_TO_DESKTOP/ML_Research/MMI_256x256_AR_Corrected/TILES_256_AR_Corrected/NORMAL'
-path3  = '/Users/gabrielleosborn-lipsitz/MOVE_BACK_TO_DESKTOP/ML_Research/MMI_256x256_AR_Corrected/TILES_256_AR_Corrected/INFLAMMATION'
+path1  = '/TILES_256_AR_Corrected/CANCER'
+path2  = '/TILES_256_AR_Corrected/NORMAL'
+path3  = '/TILES_256_AR_Corrected/INFLAMMATION'
 
 pattern = re.compile(r'Cancer')
 pattern2 = re.compile(r'Normal')
