@@ -23,7 +23,7 @@ ImageFile.LOAD_TRUNCATED_IMAGES = True
 
 ### Going through all of the subdirectories in the Single_PMT_Images_For_Image_Classifier folder and searching for the 512x512 HOSCC (human) JPG files
 
-image_folders = '/Users/gabrielleosborn-lipsitz/MOVE_BACK_TO_DESKTOP/ML_Research/Single_PMT_Images_For_Image_Classifier/'
+image_folders = '/Single_PMT_Images_For_Image_Classifier/'
 pattern = '*HOSCC*'
 for root, dirs, files in os.walk(image_folders):
     for name in files:
@@ -43,5 +43,5 @@ for name in jpgfiles:
     i += 1
     name3 = str(i)
     tiles = image_slicer.slice(name, 36, save=False)### dimmensions/image size = # of images, square # of images to put into
-    image_slicer.save_tiles(tiles, directory='/Users/gabrielleosborn-lipsitz/MOVE_BACK_TO_DESKTOP/ML_Research/TILES_85',prefix=name2+'_'+name3+'_slice', format='png')
+    image_slicer.save_tiles(tiles, directory='/TILES_85',prefix=name2+'_'+name3+'_slice', format='png')
 
