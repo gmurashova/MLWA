@@ -235,7 +235,7 @@ print(predictions[0])
 print(np.argmax(predictions[0]))
 print(test_labels[0])
 
-plot_model(model, to_file=f'./Figures/Opt:i{optimizer}_lr:{lr}_model.png')
+plot_model(model, to_file=f'./Figures/Opt:{optimizer}_lr:{lr}_model.png')
 
 fig, ax = plt.subplots(1,1, figsize = (10,10))
 ax.plot(np.arange(0, 1000), history.history['loss'], label="train_loss")
