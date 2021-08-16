@@ -1,5 +1,16 @@
 # MLWA
 
+## Create Conda Environment
+
+Create the conda environment to run the experiments.  
+
+```conda env create --prefix ./envs --file environment.yml```
+
+or
+
+```makefile```
+
+
 ## Downloading Kaggle Dataset
 
 1. Create a directory called colorectal-histology-mnist using the following command: ```mkdir colorectal-histology-mnist```
