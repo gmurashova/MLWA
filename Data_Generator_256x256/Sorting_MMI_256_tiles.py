@@ -50,27 +50,27 @@ import glob
 import re
 print(tf.__version__)
 
-paths  = '/Users/gabrielleosborn-lipsitz/MOVE_BACK_TO_DESKTOP/ML_Research/TILES_256/'
+paths  = '/TILES_256/'
 
 pattern = re.compile(r'Cancer')
 pattern2 = re.compile(r'Normal')
 pattern3 = re.compile(r'Inflammation')
 
 for i in range(1):
-    new_dir = os.mkdir("/Users/gabrielleosborn-lipsitz/MOVE_BACK_TO_DESKTOP/ML_Research/TILES_256/CANCER/")
-    new_dir2 = os.mkdir("/Users/gabrielleosborn-lipsitz/MOVE_BACK_TO_DESKTOP/ML_Research/TILES_256/NORMAL/")
-    new_dir3 = os.mkdir("/Users/gabrielleosborn-lipsitz/MOVE_BACK_TO_DESKTOP/ML_Research/TILES_256/INFLAMMATION/")
+    new_dir = os.mkdir("/TILES_256/CANCER/")
+    new_dir2 = os.mkdir("/TILES_256/NORMAL/")
+    new_dir3 = os.mkdir("/TILES_256/INFLAMMATION/")
 
 
 for root, dirs, files in os.walk(paths, topdown = False):
     for name in files:
         if pattern.search(name):
-            shutil.move(os.path.join(root, name), "/Users/gabrielleosborn-lipsitz/MOVE_BACK_TO_DESKTOP/ML_Research/TILES_256/CANCER/")
+            shutil.move(os.path.join(root, name), "/TILES_256/CANCER/")
         elif pattern2.search(name):
-            shutil.move(os.path.join(root, name), "/Users/gabrielleosborn-lipsitz/MOVE_BACK_TO_DESKTOP/ML_Research/TILES_256/NORMAL/")
+            shutil.move(os.path.join(root, name), "/TILES_256/NORMAL/")
         elif pattern3.search(name):
-            shutil.move(os.path.join(root, name), "/Users/gabrielleosborn-lipsitz/MOVE_BACK_TO_DESKTOP/ML_Research/TILES_256/INFLAMMATION/")
+            shutil.move(os.path.join(root, name), "/TILES_256/INFLAMMATION/")
         else:
-            shutil.move(os.path.join(root, name), "/Users/gabrielleosborn-lipsitz/MOVE_BACK_TO_DESKTOP/ML_Research/TILES_256/INFLAMMATION/")
+            shutil.move(os.path.join(root, name), "/TILES_256/INFLAMMATION/")
 
 
