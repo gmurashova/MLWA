@@ -50,9 +50,9 @@ import glob
 import re
 print(tf.__version__)
 
-path1  = '/Users/gabrielleosborn-lipsitz/MOVE_BACK_TO_DESKTOP/ML_Research/TILES_85/CANCER'
-path2  = '/Users/gabrielleosborn-lipsitz/MOVE_BACK_TO_DESKTOP/ML_Research/TILES_85/NORMAL'
-path3  = '/Users/gabrielleosborn-lipsitz/MOVE_BACK_TO_DESKTOP/ML_Research/TILES_85/INFLAMMATION'
+path1  = '/TILES_85/CANCER'
+path2  = '/TILES_85/NORMAL'
+path3  = '/TILES_85/INFLAMMATION'
 
 pattern = re.compile(r'Cancer')
 pattern2 = re.compile(r'Normal')
