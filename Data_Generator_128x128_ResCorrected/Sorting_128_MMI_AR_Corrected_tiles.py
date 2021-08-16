@@ -50,27 +50,27 @@ import glob
 import re
 print(tf.__version__)
 
-paths  = '/Users/gabrielleosborn-lipsitz/MOVE_BACK_TO_DESKTOP/ML_Research/MMI_128x128_AR_Corrected/TILES_128_AR_Corrected/'
+paths  = '/TILES_128_AR_Corrected/'
 
 pattern = re.compile(r'Cancer')
 pattern2 = re.compile(r'Normal')
 pattern3 = re.compile(r'Inflammation')
 
 for i in range(1):
-    new_dir = os.mkdir("/Users/gabrielleosborn-lipsitz/MOVE_BACK_TO_DESKTOP/ML_Research/MMI_128x128_AR_Corrected/TILES_128_AR_Corrected/CANCER/")
-    new_dir2 = os.mkdir("/Users/gabrielleosborn-lipsitz/MOVE_BACK_TO_DESKTOP/ML_Research/MMI_128x128_AR_Corrected/TILES_128_AR_Corrected/NORMAL/")
-    new_dir3 = os.mkdir("/Users/gabrielleosborn-lipsitz/MOVE_BACK_TO_DESKTOP/ML_Research/MMI_128x128_AR_Corrected/TILES_128_AR_Corrected/INFLAMMATION/")
+    new_dir = os.mkdir("/TILES_128_AR_Corrected/CANCER/")
+    new_dir2 = os.mkdir("/TILES_128_AR_Corrected/NORMAL/")
+    new_dir3 = os.mkdir("/TILES_128_AR_Corrected/INFLAMMATION/")
 
 
 for root, dirs, files in os.walk(paths, topdown = False):
     for name in files:
         if pattern.search(name):
-            shutil.move(os.path.join(root, name), "/Users/gabrielleosborn-lipsitz/MOVE_BACK_TO_DESKTOP/ML_Research/MMI_128x128_AR_Corrected/TILES_128_AR_Corrected/CANCER/")
+            shutil.move(os.path.join(root, name), "/TILES_128_AR_Corrected/CANCER/")
         elif pattern2.search(name):
-            shutil.move(os.path.join(root, name), "/Users/gabrielleosborn-lipsitz/MOVE_BACK_TO_DESKTOP/ML_Research/MMI_128x128_AR_Corrected/TILES_128_AR_Corrected/NORMAL/")
+            shutil.move(os.path.join(root, name), "/TILES_128_AR_Corrected/NORMAL/")
         elif pattern3.search(name):
-            shutil.move(os.path.join(root, name), "/Users/gabrielleosborn-lipsitz/MOVE_BACK_TO_DESKTOP/ML_Research/MMI_128x128_AR_Corrected/TILES_128_AR_Corrected/INFLAMMATION/")
+            shutil.move(os.path.join(root, name), "/TILES_128_AR_Corrected/INFLAMMATION/")
         else:
-            shutil.move(os.path.join(root, name), "/Users/gabrielleosborn-lipsitz/MOVE_BACK_TO_DESKTOP/ML_Research/MMI_128x128_AR_Corrected/TILES_128_AR_Corrected/INFLAMMATION/")
+            shutil.move(os.path.join(root, name), "/TILES_128_AR_Corrected/INFLAMMATION/")
 
 
