@@ -21,7 +21,7 @@ from PIL import Image
 ##################################################################################################### 
 ### Going through all of the subdirectories in the Single_PMT_Images_For_Image_Classifier folder and searching for the 512x512 HOSCC (human) JPG files
 
-image_folders = '/Users/gabrielleosborn-lipsitz/MOVE_BACK_TO_DESKTOP/ML_Research/Single_PMT_Images_For_Image_Classifier/'
+image_folders = '/Single_PMT_Images_For_Image_Classifier/'
 pattern = '*HOSCC*'
 for root, dirs, files in os.walk(image_folders):
     for name in files:
@@ -44,14 +44,14 @@ for name in jpgfiles:
     height = int(height_org * factor)
     print("New Width and Height (pixel x pixel):", width, height)
     new_im = image_file.resize((width, height), Image.ANTIALIAS)
-    new_im.save('/Users/gabrielleosborn-lipsitz/MOVE_BACK_TO_DESKTOP/ML_Research/Single_PMT_Images_For_Image_Classifier_AR_Corrected/'+name2+'.png')
+    new_im.save('/Single_PMT_Images_For_Image_Classifier_AR_Corrected/'+name2+'.png')
 
 #####################################################################################################
 ############################################## STEP 2 ###############################################  
 #####################################################################################################   
     
 ### Going through all of the subdirectories in the Single_PMT_Images_For_Image_Classifier folder and searching for the 512x512 HOSCC (human) JPG files
-AR_image_folders = '/Users/gabrielleosborn-lipsitz/MOVE_BACK_TO_DESKTOP/ML_Research/Single_PMT_Images_For_Image_Classifier_AR_Corrected/'
+AR_image_folders = '/Single_PMT_Images_For_Image_Classifier_AR_Corrected/'
 pattern = '*HOSCC*'
 for root, dirs, files in os.walk(AR_image_folders):
     for name in files:
@@ -74,6 +74,6 @@ for name in ARC_files:
     i += 1
     name3 = str(i)
     tiles = image_slicer.slice(name, 36, save=False) ### dimmensions/image size = # of images, square # of images to put into parameters
-    image_slicer.save_tiles(tiles, directory='/Users/gabrielleosborn-lipsitz/MOVE_BACK_TO_DESKTOP/ML_Research/TILES_64_AR_Corrected',prefix=name2+'_'+name3+'_slice', format='png')
+    image_slicer.save_tiles(tiles, directory='/TILES_64_AR_Corrected',prefix=name2+'_'+name3+'_slice', format='png')
 
     
