@@ -17,6 +17,17 @@ or
 2. Generate a kaggle login and then go to the [colorectal histology mnist](https://www.kaggle.com/kmader/colorectal-histology-mnist) to download the required datase. Save the ```archive.zip``` file in the above directory.
 3. Extract the file using the ofllowing command: ```unzip archive.zip```
 
+
+## Generating NMMMI Image Data 
+
+There are three scripts in each "Data_Generator_*" folder. The scripts must be run in the following order:
+
+1. ML_Image_Tiler_Dim1xDim2.py <-- This file goes through all of the original NMMMI images in the designated folder (either original resolution or the artificially corrected resolution (AR)) and tiles them based on the output tile dimensions specified. Make sure the path is going to the appropriate image folder. If you are tiling the original resolution NMMMIs, use this folder: "Single_PMT_Images_For_Image_Classifier", if you are tiling the artificially corrected resolution NMMMIs, use this folder: "Single_PMT_Images_For_Image_Classifier_AR_Corrected"
+
+2. Sorting_MMI_tiles.py <- this file organizes the newly-tiled NMMMIs into the appropriate class folder that it creates, e.g. CANCER, INFLAMMATORY, or HEALTHY.
+
+3. create_label_vector.py <-- this file creates an array of labels for the tiles that are one-hot encoded so the ML program can import, use, and interpret them.
+
 ## Review trials
 
 1. ML Hyperparam Trials <-- this is the folder with the scripts to run the hyperparameter trials, where I test the various learning rates and optimizer functions on the Kaggle dataset.
