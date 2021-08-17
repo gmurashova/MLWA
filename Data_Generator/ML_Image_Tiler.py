@@ -54,11 +54,11 @@ for root, dirs, files in os.walk(image_folders):
         if fnmatch.filter(files,pattern) and name.endswith((".jpg",".png")):
             print(name)
             ### Giving each of the found image files their direct path name so that they can be referenced 
-jpgfiles = [os.path.join(root, name)
+            jpgfiles = [os.path.join(root, name)
                          for root, dirs, files in os.walk(image_folders)
                          for name in files
                          if fnmatch.filter(files,pattern) and name.endswith((".jpg",".png"))]
-# print(jpgfiles)
+print(jpgfiles)
 ## slicing each of those  512x512pixel images into 8 pieces so they will be 64 pixels
 i = 0
 for name in jpgfiles:
@@ -69,6 +69,6 @@ for name in jpgfiles:
     num_subimgs = int(im_sz/tile_sz*im_sz/tile_sz)
     print(f"{num_subimgs=}")
     tiles = image_slicer.slice(name, num_subimgs, save=False)
-    image_slicer.save_tiles(tiles, directory=out_folder,prefix=name2+'_'+name3+'_slice', format='png')
+    image_slicer.save_tiles(tiles, directory=out_folder,prefix=f"{name2}_{name3}_slice", format='png')
 
 
