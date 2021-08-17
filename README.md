@@ -18,6 +18,14 @@ or
 3. Extract the file using the ofllowing command: ```unzip archive.zip```
 
 
+## Obtaining PTM dataset
+
+Send an email to murasho1@msu.edu to request the dataset, you will be sent two files which should be extracted in the git root directory using the following command:
+
+```tar -xzvf Single_PMT_Images_For_Image_Classifier_AR_Corrected.tar.gz``` 
+
+```tar -xzvf Single_PMT_Images_For_Image_Classifier.tar.gz ```
+
 ## Generating NMMMI Image Data 
 
 There are three scripts in each "Data_Generator_*" folder. The scripts must be run in the following order:
