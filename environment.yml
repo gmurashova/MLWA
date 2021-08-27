@@ -11,4 +11,5 @@ dependencies:
   - pydot
   - pip:
     - image_slicer
+    - pydot_ng
 

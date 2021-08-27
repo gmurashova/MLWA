@@ -51,21 +51,21 @@ import re
 print(tf.__version__)
 
 
-root = './Tiles_128'
+data_root = './Tiles_128'
 
 ### Start input arguments
 print('Number of arguments:', len(sys.argv), 'arguments.')
 print('Argument List:', str(sys.argv))
 
 if len(sys.argv) > 1:
-    root=sys.argv[1] 
-print(f"{root=}")
+    data_root=sys.argv[1] 
+print(f"{data_root=}")
 ### End input argument code ###
 
 
-path1  = f'{root}/CANCER'
-path2  = f'{root}/NORMAL'
-path3  = f'{root}/INFLAMMATION'
+path1  = f'{data_root}/CANCER'
+path2  = f'{data_root}/NORMAL'
+path3  = f'{data_root}/INFLAMMATION'
 
 pattern = re.compile(r'Cancer')
 pattern2 = re.compile(r'Normal')
@@ -117,13 +117,13 @@ print(len(label_array))
 print(label_array)
 print(np.shape(label_array))
 
-np.save(f'{root}/MMI_class_labels.npy', label_array)
+np.save(f'{data_root}/MMI_class_labels.npy', label_array)
 
 OHE_array = np.array(OHE_labels)
 print(len(OHE_array))
 print(OHE_array)
 print(np.shape(OHE_array))
 
-np.save(f'{root}/MMI_OHE_class_labels.npy', OHE_array)
+np.save(f'{data_root}/MMI_OHE_class_labels.npy', OHE_array)
 
 
