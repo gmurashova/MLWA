@@ -1,8 +1,8 @@
-./MMI_Trial.py TEST_64 64 
-./MMI_Trial.py TEST_85 85 
-./MMI_Trial.py TEST_128 128 
-./MMI_Trial.py TEST_256 256 
-./MMI_Trial.py TEST_64_AC_Corrected 64 
-./MMI_Trial.py TEST_85_AC_Corrected 85 
-./MMI_Trial.py TEST_128_AC_Corrected 128 
-./MMI_Trial.py TEST_256_AC_Corrected 256 
+./MMI_Trial.py TILES_64 64 
+./MMI_Trial.py TILES_85 85 
+./MMI_Trial.py TILES_128 128 
+./MMI_Trial.py TILES_256 256 
+./MMI_Trial.py TILES_64_AC_Corrected 64 
+./MMI_Trial.py TILES_85_AC_Corrected 85 
+./MMI_Trial.py TILES_128_AC_Corrected 128 
+./MMI_Trial.py TILES_256_AC_Corrected 256 

@@ -10,7 +10,7 @@ mkdir -p Figures
 mkdir -p Models
 
 module load anaconda
-conda activate ../envs
+conda activate ./envs
 
 trial=`cat MMI_Trial.txt | head -n ${SLURM_ARRAY_TASK_ID} | tail -n 1`
 
