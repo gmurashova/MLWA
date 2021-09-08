@@ -15,7 +15,7 @@ or
 
 1. Create a directory called colorectal-histology-mnist using the following command: ```mkdir colorectal-histology-mnist```
 2. Generate a kaggle login and then go to the [colorectal histology mnist](https://www.kaggle.com/kmader/colorectal-histology-mnist) to download the required datase. Save the ```archive.zip``` file in the above directory.
-3. Extract the file using the ofllowing command: ```unzip archive.zip```
+3. Extract the file using the following command: ```unzip archive.zip```
 
 
 ## Generating NMMMI Image Data 
