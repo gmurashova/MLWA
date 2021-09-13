@@ -7,4 +7,9 @@ dependencies:
   - matplotlib
   - pandas
   - scikit-learn
+  - scikit-image
   - pydot
+  - pip:
+    - image_slicer
+    - pydot_ng
+

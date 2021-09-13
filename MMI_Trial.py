@@ -53,18 +53,39 @@ print("Keras version", keras.__version__)
 print("Sklearn version", sklearn.__version__)
 print("Skimage version", skimage.__version__)
 
+input_runname = 'run_64_AC_Corrected'
+CSV_filename = './TILES/epoch_1'
+log_D = './TILES/tensorboard_log1'
 
-#
-input_runname = sys.argv[1]
-CSV_filename = sys.argv[2]
-log_D = sys.argv[3]
-#
+paths  = './TILES_64_AR_Corrected/'
+image_dim=64
+n_train=2592
+n_test=648
 
-# input_runname = 'run_64_AC_Corrected'
-# CSV_filename = './TILES/epoch_1'
-# log_D = './TILES/tensorboard_log1'
+## Start input arguments ###
+print('Number of arguments:', len(sys.argv), 'arguments.')
+print('Argument List:', str(sys.argv))
 
-paths  = './TILES_128_AR_Corrected/'
+if len(sys.argv) > 1:
+    input_folder=sys.argv[1] 
+
+if len(sys.argv) > 2:
+    image_dim = sys.argv[2]
+
+input_runname = input_folder
+output_folder=f"output_{input_folder}"
+paths = input_folder
+label_file = 'MMI_OHE_class_labels.npy'
+log_D = f"{output_folder}/{input_folder}.log"
+CSV_filename=f"{output_folder}/{input_folder}.csv"
+
+print(f"{input_runname=}")
+print(f"{CSV_filename=}")
+print(f"{log_D=}")
+print(f"{paths=}")
+print(f"{label_file=}")
+### End input argument code ###
+
 
 for root, dirs, files in os.walk(paths):
     for files in dirs:
@@ -96,7 +117,7 @@ data = datafiles
 #
         
 ### Preprocessing to train ####
-Y = np.load('./TILES_128_AR_Corrected/MMI_OHE_class_labels.npy')
+Y = np.load(f'./{paths}/{label_file}')
 
 X = data
 print('Shape of X',np.shape(X))
@@ -110,11 +131,11 @@ print('Shape of y_train',np.shape(y_train))
 print('Shape of y_val',np.shape(y_val))
 #
 train_images_a = np.array(x_train)
-train_images = train_images_a.reshape((648, 128,128))
+train_images = train_images_a.reshape((n_train, image_dim, image_dim))
 train_labels = np.array(y_train)
 
 test_images_a = np.array(x_val)
-test_images = test_images_a.reshape((162, 128,128))
+test_images = test_images_a.reshape((n_test, image_dim, image_dim))
 test_labels = np.array(y_val)
 #
 from numpy import array
@@ -131,7 +152,7 @@ plt.imshow(random.choice(train_images))
 plt.colorbar()
 plt.grid(False)
 # plt.show()
-plt.savefig('./MMI_Figures_ARC/Random_Trained_Image_'+input_runname+'.png', bbox_inches = "tight", transparent = True)
+plt.savefig(f'./{output_folder}/Random_Trained_Image_'+input_runname+'.png', bbox_inches = "tight", transparent = True)
 #
 train_images = train_images / 255.0
 test_images = test_images / 255.0
@@ -171,7 +192,7 @@ for i in range(25):
         plt.ylabel(0)
         plt.xlabel(class_names[0])
 # plt.show()
-plt.savefig('./MMI_Figures_ARC/Images_Viewed_'+input_runname+'.png', bbox_inches = "tight", transparent = True)
+plt.savefig(f'./{output_folder}/Images_Viewed_'+input_runname+'.png', bbox_inches = "tight", transparent = True)
 
 gen = ImageDataGenerator(rotation_range=15,
                                width_shift_range=0.1,
@@ -185,7 +206,7 @@ gen = ImageDataGenerator(rotation_range=15,
                                # brightness_range=[0.5, 1.5])
 
 model = keras.Sequential([
-    keras.layers.Conv2D(32,kernel_size = (3,3), input_shape = (128,128,1),activation = tf.nn.relu, padding = "valid"),
+    keras.layers.Conv2D(32,kernel_size = (3,3), input_shape = (image_dim,image_dim,1),activation = tf.nn.relu, padding = "valid"),
     keras.layers.MaxPooling2D(pool_size = (2,2)),
     keras.layers.Conv2D(32,kernel_size = (3,3),  activation = tf.nn.relu, padding = "same"),
     keras.layers.MaxPooling2D(pool_size = (2,2)),
@@ -193,7 +214,7 @@ model = keras.Sequential([
     keras.layers.Conv2D(64,kernel_size = (3,3), activation = tf.nn.relu, padding = "same"),
     keras.layers.MaxPooling2D(pool_size = (2,2)),
     keras.layers.Dropout(0.20),
-    keras.layers.Flatten(input_shape=(64,64)),
+    keras.layers.Flatten(input_shape=(64, 64)),
     keras.layers.Dense(128, activation=tf.nn.relu,kernel_regularizer = l2(0.001)),
     keras.layers.Dropout(0.50),
     keras.layers.Dense(128, activation=tf.nn.relu,kernel_regularizer = l2(0.001)),
@@ -223,10 +244,10 @@ model.compile(optimizer=adam, #lr = 0.001
               loss='sparse_categorical_crossentropy',
               metrics=['accuracy'])
 
-train_images = train_images.reshape(648, 128,128, 1)
+train_images = train_images.reshape(n_train, image_dim, image_dim, 1)
 print(np.shape(train_images))
 
-test_images = test_images.reshape(162, 128,128, 1)
+test_images = test_images.reshape(n_test, image_dim, image_dim, 1)
 print(np.shape(test_images))
 
 import time
@@ -248,7 +269,7 @@ print(end - start)
 # print(history.history())
 
 ## SAVING THE MODEL
-model.save("./MMI_Models_ARC/Histology_IC_adam_SCC_lr-0.001_BS16_E400__NoAug_"+input_runname+".h5")
+model.save(f"./{output_file}/Histology_IC_adam_SCC_lr-0.001_BS16_E400__NoAug_"+input_runname+".h5")
 print("Saved model to disk")
 
 model.summary()
@@ -287,6 +308,6 @@ ax.set_xlabel("Epoch #")
 ax.set_ylabel("Loss/Accuracy")
 plt.legend(loc="upper left")
 # plt.show()
-plt.savefig('./MMI_Plots_ARC/Training_and_Testing_Accuracy_and_Loss_Opt-Adam_lr-0.001_NoAug_'+input_runname+'.png', transparent = True, bbox_inches = "tight")
+plt.savefig(f'./{output_folder}/Training_and_Testing_Accuracy_and_Loss_Opt-Adam_lr-0.001_NoAug_'+input_runname+'.png', transparent = True, bbox_inches = "tight")
 
 #

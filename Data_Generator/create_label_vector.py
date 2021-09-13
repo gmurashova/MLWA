@@ -50,27 +50,80 @@ import glob
 import re
 print(tf.__version__)
 
-paths  = '/TILES_128/'
+
+data_root = './Tiles_128'
+
+### Start input arguments
+print('Number of arguments:', len(sys.argv), 'arguments.')
+print('Argument List:', str(sys.argv))
+
+if len(sys.argv) > 1:
+    data_root=sys.argv[1] 
+print(f"{data_root=}")
+### End input argument code ###
+
+
+path1  = f'{data_root}/CANCER'
+path2  = f'{data_root}/NORMAL'
+path3  = f'{data_root}/INFLAMMATION'
 
 pattern = re.compile(r'Cancer')
 pattern2 = re.compile(r'Normal')
 pattern3 = re.compile(r'Inflammation')
+pattern4 = re.compile(r'Inflamation')
 
-for i in range(1):
-    new_dir = os.mkdir("/TILES_128/CANCER/")
-    new_dir2 = os.mkdir("/TILES_128/NORMAL/")
-    new_dir3 = os.mkdir("/TILES_128/INFLAMMATION/")
-
-
-for root, dirs, files in os.walk(paths, topdown = False):
+labels = []
+OHE_labels =[]
+for root, dirs, files in os.walk(path1, topdown = False):
     for name in files:
         if pattern.search(name):
-            shutil.move(os.path.join(root, name), "/TILES_128/CANCER/")
-        elif pattern2.search(name):
-            shutil.move(os.path.join(root, name), "/TILES_128/NORMAL/")
-        elif pattern3.search(name):
-            shutil.move(os.path.join(root, name), "/TILES_128/INFLAMMATION/")
+            label = "Cancer"
+            labels.append(label)
+            OH_label = 0
+            OHE_labels.append(OH_label)
         else:
-            shutil.move(os.path.join(root, name), "/TILES_128/INFLAMMATION/")
+            pass
+print(len(labels))
+for root, dirs, files in os.walk(path2, topdown = False):
+    for name in files:    
+        if pattern2.search(name):
+            label2 = "Normal"
+            labels.append(label2)
+            OH_label2 = 1
+            OHE_labels.append(OH_label2)
+        else:
+            pass
+print(len(labels))
+for root, dirs, files in os.walk(path3, topdown = False):
+    for name in files:
+        if pattern3.search(name):
+            label3 = "Inflammation"
+            labels.append(label3)
+            OH_label3 = 2
+            OHE_labels.append(OH_label3)
+        elif pattern4.search(name):
+            label4 = "Inflammation"
+            labels.append(label4)
+            OH_label4 = 2
+            OHE_labels.append(OH_label4)
+        else:
+            pass
+            
+print(len(labels))
+print(labels)
+
+label_array = np.array(labels)
+print(len(label_array))
+print(label_array)
+print(np.shape(label_array))
+
+np.save(f'{data_root}/MMI_class_labels.npy', label_array)
+
+OHE_array = np.array(OHE_labels)
+print(len(OHE_array))
+print(OHE_array)
+print(np.shape(OHE_array))
+
+np.save(f'{data_root}/MMI_OHE_class_labels.npy', OHE_array)
 
 

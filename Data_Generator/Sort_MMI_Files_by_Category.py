@@ -50,27 +50,37 @@ import glob
 import re
 print(tf.__version__)
 
-paths  = '/TILES_64_AR_Corrected/'
+paths  = './TILES_128/'
+
+### Start input arguments ###
+print('Number of arguments:', len(sys.argv), 'arguments.')
+print('Argument List:', str(sys.argv))
+
+if len(sys.argv) > 1:
+    paths=sys.argv[1] 
+
+print(f"{paths=}")
+### End input argument code ###
 
 pattern = re.compile(r'Cancer')
 pattern2 = re.compile(r'Normal')
 pattern3 = re.compile(r'Inflammation')
 
 for i in range(1):
-    new_dir = os.mkdir("/TILES_64_AR_Corrected/CANCER/")
-    new_dir2 = os.mkdir("/TILES_64_AR_Corrected/NORMAL/")
-    new_dir3 = os.mkdir("/TILES_64_AR_Corrected/INFLAMMATION/")
+    new_dir = os.mkdir(f"{paths}/CANCER/")
+    new_dir2 = os.mkdir(f"{paths}/NORMAL/")
+    new_dir3 = os.mkdir(f"{paths}/INFLAMMATION/")
 
 
 for root, dirs, files in os.walk(paths, topdown = False):
     for name in files:
         if pattern.search(name):
-            shutil.move(os.path.join(root, name), "/TILES_64_AR_Corrected/CANCER/")
+            shutil.move(os.path.join(root, name), f"{paths}/CANCER/")
         elif pattern2.search(name):
-            shutil.move(os.path.join(root, name), "/TILES_64_AR_Corrected/NORMAL/")
+            shutil.move(os.path.join(root, name), f"{paths}/NORMAL/")
         elif pattern3.search(name):
-            shutil.move(os.path.join(root, name), "/TILES_64_AR_Corrected/INFLAMMATION/")
+            shutil.move(os.path.join(root, name), f"{paths}/INFLAMMATION/")
         else:
-            shutil.move(os.path.join(root, name), "/TILES_64_AR_Corrected/INFLAMMATION/")
+            shutil.move(os.path.join(root, name), f"{paths}/INFLAMMATION/")
 
 

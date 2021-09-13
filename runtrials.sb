@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --time=6:00:00
 #SBATCH --mem=4gb
-#SBATCH --array=1-22
+#SBATCH --array=1-8
 
 # Submission script to run all the files using SLURM batch system
 
@@ -10,9 +10,9 @@ mkdir -p Figures
 mkdir -p Models
 
 module load anaconda
-conda activate ../envs
+conda activate ./envs
 
-trial=`cat runtrials.txt | head -n ${SLURM_ARRAY_TASK_ID} | tail -n 1`
+trial=`cat MMI_Trial.txt | head -n ${SLURM_ARRAY_TASK_ID} | tail -n 1`
 
 echo ${trial}
 
